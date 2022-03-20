@@ -60,9 +60,12 @@ const useStyles = makeStyles(() =>
 			alignItems: "center",
 			display: "flex",
 			flexDirection: "column",
+			fontSize: "large",
+			fontWeight: "bold",
+			color: "green",
 			height: "fit-content",
 			justifyContent: "space-around",
-			marginTop: "20px",
+			marginTop: "40px",
 			width: "fit-content",
 		},
 		certificateHolder: {
@@ -129,12 +132,32 @@ const Content: React.FC = () => {
 		fetchInfo();
 	}, []);
 
+	setTimeout(() => {
+		async function status1() {
+			const response = await fetch("http://34.221.173.36:5123/api/info/sessionStatus").then((res) =>
+				res.json()
+			);
+			console.log(response);
+		}
+		status1();
+	}, 5000);
+
+	setTimeout(() => {
+		async function status1() {
+			const response = await fetch("http://34.221.173.36:5123/api/info/someOtherStatus").then((res) =>
+				res.json()
+			);
+			console.log(response);
+		}
+		status1();
+	}, 8000);
+
 	const classes = useStyles();
 	return (
 		<div className={classes.mainContent}>
 			<div className={classes.logoPalette}>
 				<div className={classes.productLogoContainer}>
-					<img object-fit="fill" src="http://34.221.173.36:5123/product1.png" alt="" />
+					<img src={`http://34.221.173.36:5123/${info?.data.product.img}.png`} alt="" />
 				</div>
 			</div>
 			<div className={classes.productNameContainer}>{info?.data.product.name}</div>
@@ -172,6 +195,7 @@ const Content: React.FC = () => {
 				})}
 			</div>
 			<div className={classes.certificateContainer}>
+				CERTIFICATES
 				{info?.data.product.certificates.map((item) => {
 					return (
 						<div className={classes.certificateHolder}>
