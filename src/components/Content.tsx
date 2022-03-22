@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { StyledPaper } from "./common/styles";
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		mainContent: {
 			alignItems: "center",
@@ -26,8 +26,10 @@ const useStyles = makeStyles(() =>
 			backgroundColor: "white",
 			display: "flex",
 			justifyContent: "center",
-			minHeight: "200px",
-			minWidth: "200px",
+			minHeight: "150px",
+			minWidth: "150px",
+			borderRadius: "25%",
+			margin: "15px",
 		},
 		productNameContainer: {
 			alignItems: "center",
@@ -42,8 +44,23 @@ const useStyles = makeStyles(() =>
 			backgroundColor: "#EBEBEB",
 			display: "flex",
 			justifyContent: "space-evenly",
-			minHeight: "400px",
-			width: "70%",
+			height: "fit-content",
+			width: "65%",
+			[theme.breakpoints.down("md")]: {
+				flexDirection: "column",
+				backgroundColor: "blanchedalmond",
+				width: "80%",
+			},
+		},
+		ingredientsDetails: {
+			display: "flex",
+			fontFamily: "serif",
+			justifyContent: "center",
+			flexDirection: "column",
+			height: "fit-content",
+			width: "fit-content",
+			paddingTop: "10px",
+			paddingBottom: "10px",
 		},
 		ingredientsHeader: {
 			backgroundColor: "#EBEBEB",
@@ -54,7 +71,11 @@ const useStyles = makeStyles(() =>
 			height: "fit-content",
 			justifyContent: "center",
 			paddingTop: "10px",
-			width: "70%",
+			width: "65%",
+			[theme.breakpoints.down("md")]: {
+				backgroundColor: "blanchedalmond",
+				width: "80%",
+			},
 		},
 		certificateContainer: {
 			alignItems: "center",
@@ -132,25 +153,25 @@ const Content: React.FC = () => {
 		fetchInfo();
 	}, []);
 
-	setTimeout(() => {
-		async function status1() {
-			const response = await fetch("http://34.221.173.36:5123/api/info/sessionStatus").then((res) =>
-				res.json()
-			);
-			console.log(response);
-		}
-		status1();
-	}, 5000);
+	// setTimeout(() => {
+	// 	async function status1() {
+	// 		const response = await fetch("http://34.221.173.36:5123/api/info/sessionStatus").then((res) =>
+	// 			res.json()
+	// 		);
+	// 		console.log(response);
+	// 	}
+	// 	status1();
+	// }, 5000);
 
-	setTimeout(() => {
-		async function status1() {
-			const response = await fetch("http://34.221.173.36:5123/api/info/someOtherStatus").then((res) =>
-				res.json()
-			);
-			console.log(response);
-		}
-		status1();
-	}, 8000);
+	// setTimeout(() => {
+	// 	async function status1() {
+	// 		const response = await fetch("http://34.221.173.36:5123/api/info/someOtherStatus").then((res) =>
+	// 			res.json()
+	// 		);
+	// 		console.log(response);
+	// 	}
+	// 	status1();
+	// }, 8000);
 
 	const classes = useStyles();
 	return (
@@ -171,25 +192,16 @@ const Content: React.FC = () => {
 			<div className={classes.ingredientsHeader}>INGREDIENTS</div>
 			<div className={classes.ingredientsPalette}>
 				<div className={classes.productLogoContainer}>
-					<img src="http://34.221.173.36:5123/onions.png" alt="" />
+					<img height="90%" width="90%" src="http://34.221.173.36:5123/onions.png" alt="" />
 				</div>
 				{info?.data.product.ingredients.map((item) => {
 					return (
-						<div
-							style={{
-								display: "flex",
-								fontFamily: "serif",
-								justifyContent: "center",
-								flexDirection: "column",
-								minHeight: "300px",
-								minWidth: "300px",
-								backgroundColor: "white",
-							}}>
-							<span style={{ margin: 10 }}>Name:{item.name}</span>
-							<span style={{ margin: 10 }}>Content:{item.content}</span>
-							<span style={{ margin: 10 }}>miniContent:{item.miniContent}</span>
-							<span style={{ margin: 10 }}>percentage:{item.percentage}</span>
-							<span style={{ margin: 10 }}>origin:{item.origin}</span>
+						<div className={classes.ingredientsDetails}>
+							<span style={{ margin: 10 }}>Name: {item.name}</span>
+							<span style={{ margin: 10 }}>Content: {item.content}</span>
+							<span style={{ margin: 10 }}>MiniContent: {item.miniContent}</span>
+							<span style={{ margin: 10 }}>Percentage: {item.percentage}</span>
+							<span style={{ margin: 10 }}>Origin: {item.origin}</span>
 						</div>
 					);
 				})}
