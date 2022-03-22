@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			[theme.breakpoints.down("md")]: {
 				flexDirection: "column",
 				backgroundColor: "blanchedalmond",
-				width: "80%",
+				width: "90%",
 			},
 		},
 		ingredientsDetails: {
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: "65%",
 			[theme.breakpoints.down("md")]: {
 				backgroundColor: "blanchedalmond",
-				width: "80%",
+				width: "90%",
 			},
 		},
 		certificateContainer: {
