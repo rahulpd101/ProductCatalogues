@@ -153,25 +153,25 @@ const Content: React.FC = () => {
 		fetchInfo();
 	}, []);
 
-	// setTimeout(() => {
-	// 	async function status1() {
-	// 		const response = await fetch("http://34.221.173.36:5123/api/info/sessionStatus").then((res) =>
-	// 			res.json()
-	// 		);
-	// 		console.log(response);
-	// 	}
-	// 	status1();
-	// }, 5000);
+	setTimeout(() => {
+		async function status1() {
+			const response = await fetch("http://34.221.173.36:5123/api/info/sessionStatus").then((res) =>
+				res.json()
+			);
+			console.log(response);
+		}
+		status1();
+	}, 5000);
 
-	// setTimeout(() => {
-	// 	async function status1() {
-	// 		const response = await fetch("http://34.221.173.36:5123/api/info/someOtherStatus").then((res) =>
-	// 			res.json()
-	// 		);
-	// 		console.log(response);
-	// 	}
-	// 	status1();
-	// }, 8000);
+	setTimeout(() => {
+		async function status1() {
+			const response = await fetch("http://34.221.173.36:5123/api/info/someOtherStatus").then((res) =>
+				res.json()
+			);
+			console.log(response);
+		}
+		status1();
+	}, 8000);
 
 	const classes = useStyles();
 	return (
